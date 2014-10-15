@@ -156,14 +156,37 @@ _.assign(Yahtzee.Player.prototype, {
         
         card[category] = +dieScore[category];
 
-        if (unused.length == 1) {
+        if (this.checkFinished()) {
             this.done = true;
             return this.name +", that ends your game. Final score: " + this.card.total();
         } else {
             this.newTurn();
             return this.name + ", you've just scored another " + (+dieScore[category]) + " points. Roll again.";
         }
-    }
+    },
+	
+	/**
+     * Checks to see if all the scores have been filled in and returns false if any are empty.
+     */
+	checkFinished: function () {
+		var card = this.card;
+		
+		if (card["aces"] === null) { return false; }
+		if (card["twos"] === null) { return false; }
+		if (card["threes"] === null) { return false; }
+		if (card["fours"] === null) { return false; }
+		if (card["fives"] === null) { return false; }
+		if (card["sixes"] === null) { return false; }
+		if (card["three_of_a_kind"] === null) { return false; }
+		if (card["four_of_a_kind"] === null) { return false; }
+		if (card["full_house"] === null) { return false; }
+		if (card["sm_straight"] === null) { return false; }
+		if (card["lg_straight"] === null) { return false; }
+		if (card["yahtzee"] === null) { return false; }
+		if (card["chance"] === null) { return false; }
+		
+		return true;
+	}
 });
 
 
