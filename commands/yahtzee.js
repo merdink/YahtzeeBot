@@ -45,6 +45,6 @@ module.exports = function(bot) {
         };
 
         if (message.args[0] && subCommands[message.args[0]]) subCommands[message.args[0]](message);
-        else bot.say(to, "Invalid command. Valid options: " + _.keys(subCommands).join(", "));
+        else bot.say(message.to, "Invalid command. Valid options: " + _.keys(subCommands).join(", "));
     };
 };
